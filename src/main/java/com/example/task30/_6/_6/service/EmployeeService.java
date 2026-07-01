@@ -1,7 +1,6 @@
 package com.example.task30._6._6.service;
 
 import com.example.task30._6._6.entity.Employee;
-
 import com.example.task30._6._6.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,16 +21,27 @@ public class EmployeeService {
         return repository.findAll();
     }
 
-    public void raiseSalary(){
+    public boolean updateSalary(String name,double percentage){
 
-        List<Employee> employees = repository.findAll();
+        List<Employee> employees=repository.findAll();
 
-        for(Employee e : employees){
+        for(Employee e:employees){
 
-            e.setSalary(e.getSalary()+5000);
+            if(e.getName().equalsIgnoreCase(name)){
 
-            repository.save(e);
+                double salary=e.getSalary();
+
+                salary=salary+(salary*percentage/100);
+
+                e.setSalary(salary);
+
+                repository.save(e);
+
+                return true;
+            }
         }
+
+        return false;
     }
 
 }

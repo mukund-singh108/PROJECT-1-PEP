@@ -7,14 +7,11 @@ public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     private String name;
-
     private int age;
-
     private String designation;
-
     private double salary;
 
     public Employee() {
@@ -27,8 +24,12 @@ public class Employee {
         this.salary = salary;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -62,6 +63,7 @@ public class Employee {
     public void setSalary(double salary) {
         this.salary = salary;
     }
+
     @Override
     public String toString() {
         return "Employee{" +
